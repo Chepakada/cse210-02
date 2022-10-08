@@ -17,7 +17,7 @@ namespace London_Jack // Note: actual namespace depends on the project name.
         int _finalScore = 300;
         
         string _value = "";
-
+        public string Choice;
 
         ///<summary>
         /// Constructs a new instance of Game_play 
@@ -49,10 +49,12 @@ namespace London_Jack // Note: actual namespace depends on the project name.
             Console.WriteLine($"Your first card is {_value}");
             Console.Write($"Higher or lower? [h/l]");
             string choice= Console.ReadLine();
-            _isPlaying = (choice.ToLower() == "h" || choice == "l");
+            Choice = choice;
+            Console.Write(Choice);
+            _isPlaying = (Choice.ToLower() == "h" || Choice == "l");
             //Cards.Choice = $"{choice}";
-            Cards choice1 = new Cards();
-            choice1.Choice= choice;
+            //Cards choice1 = new Cards();
+            
 
         }
      
@@ -71,10 +73,11 @@ namespace London_Jack // Note: actual namespace depends on the project name.
             _score =0;
             foreach (Cards card in _card){
                 card.first_draw();
-                 card.Play();
+                 card.Play(Choice);
                 _score = card.points;
             }
             _finalScore += _score;
+            _score= 0;
         }
 
         /// <summary>
@@ -103,7 +106,7 @@ namespace London_Jack // Note: actual namespace depends on the project name.
 
             Console.WriteLine($"Next Card was:{value2}");
             Console.WriteLine($"Your score is: {_finalScore}\n");
-            _isPlaying = (_score<=0);
+            _isPlaying = (_finalScore>=0);
         }
 
 
